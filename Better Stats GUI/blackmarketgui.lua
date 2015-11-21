@@ -991,6 +991,9 @@ function InventoryStatsPopup:_melee_weapons_damage()
 	local charged_kd = base_stats.damage_effect.max_value + mods_stats.damage_effect.max_value + skill_stats.damage_effect.max_value
 	local charge_time = base_stats.charge_time.value + mods_stats.charge_time.value + skill_stats.charge_time.value
 
+	self:row():l_text("Type:"):r_text("%s", {data = {melee.type}})
+	self:row():l_text("Level:"):r_text("%d", {data = {managers.blackmarket:weapon_level(self._data.name)}})
+  self:row({ h = 15 })
 	self:row():l_text("Attack Delay:"):r_text("%.2fs", {data = {melee.instant and 0 or melee.melee_damage_delay}})
 	self:row():l_text("Cooldown:"):r_text("%.2fs", {data = {melee.repeat_expire_t}})
 	if not melee.instant then self:row():l_text("Unequip Delay:"):r_text("%.2fs", {data = {melee.expire_t}}) end
